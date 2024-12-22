@@ -13,6 +13,7 @@ namespace Unity.FPS.Gameplay
         public float BobbingAmount = 1f;
 
         [Tooltip("Rotation angle per second")] public float RotatingSpeed = 360f;
+        [Tooltip("Rotation direction")] public Vector3 RotatingVector = new Vector3(0f, 1f, 0f);
 
         [Tooltip("Sound played on pickup")] public AudioClip PickupSfx;
         [Tooltip("VFX spawned on pickup")] public GameObject PickupVfxPrefab;
@@ -45,7 +46,7 @@ namespace Unity.FPS.Gameplay
             transform.position = m_StartPosition + Vector3.up * bobbingAnimationPhase;
 
             // Handle rotating
-            transform.Rotate(Vector3.up, RotatingSpeed * Time.deltaTime, Space.Self);
+            transform.Rotate(RotatingVector * RotatingSpeed * Time.deltaTime);
         }
 
         void OnTriggerEnter(Collider other)
